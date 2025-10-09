@@ -216,7 +216,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 Proprietary Non-Commercial License - FREE for personal and educational use.
 See [LICENSE](LICENSE) for details.
 
-For commercial use, contact: licensing@rightnowai.co
+For commercial use, contact: jaber@rightnowai.co
 
 ## Support
 
