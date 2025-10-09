@@ -177,6 +177,7 @@ kernel_cache/
 *_optimized.cuh
 
 # Test files (should not be in production)
+tests/
 test.cu
 test_*.cu
 test.exe
