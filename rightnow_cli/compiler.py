@@ -115,28 +115,82 @@ class CUDACompiler:
                 "-lineinfo",
                 f"-o={ptx_file}"
             ] + self.arch_flags
-            
+
             constraints = kernel_data.get("constraints", {})
             if "max_registers" in constraints:
                 compile_flags.append(f"-maxrregcount={constraints['max_registers']}")
-            
+
+            # CRITICAL FIX: Add -ccbin flag on Windows to explicitly specify x64 compiler
+            # This prevents cudafe++ ACCESS_VIOLATION errors
+            ccbin_path = None
+            if platform.system() == "Windows":
+                try:
+                    from .utils.detection import ToolchainDetector
+                    detector = ToolchainDetector()
+                    compiler_info = detector.detect_cpp_compiler()
+
+                    if compiler_info.available and compiler_info.path:
+                        cl_dir = str(Path(compiler_info.path).parent)
+
+                        # Ensure x64 (CUDA 12+ requirement)
+                        if 'x86' in cl_dir.lower() and 'x64' not in cl_dir.lower():
+                            x64_dir = cl_dir.replace('x86', 'x64').replace('X86', 'X64').replace('Hostx86', 'Hostx64')
+                            if Path(x64_dir, 'cl.exe').exists():
+                                cl_dir = x64_dir
+
+                        # Add -ccbin flag to explicitly specify compiler
+                        compile_flags.insert(0, f"-ccbin={cl_dir}")
+                        ccbin_path = cl_dir
+                except Exception:
+                    pass
+
             try:
                 console.print(f"[cyan]Compiling kernel for {kernel_data.get('operation', 'unknown')}...[/cyan]")
-                
+
+                # Prepare environment with MSVC support on Windows
+                compilation_env = os.environ.copy()
+                if platform.system() == "Windows":
+                    try:
+                        # IMPORTANT: Create fresh detector instance to avoid cache issues
+                        from .utils.detection import ToolchainDetector
+                        detector = ToolchainDetector()  # Fresh instance, no cache
+
+                        compiler_info = detector.detect_cpp_compiler()
+                        if compiler_info.available and compiler_info.env_vars:
+                            # Merge MSVC environment variables
+                            compilation_env.update(compiler_info.env_vars)
+                        else:
+                            # Fallback: try to get environment from detector
+                            msvc_env = detector.get_msvc_environment()
+                            if msvc_env:
+                                compilation_env.update(msvc_env)
+                    except Exception:
+                        # Fallback: continue with default environment
+                        pass
+
                 result = subprocess.run(
                     [self.nvcc_path] + compile_flags + [str(cuda_file)],
                     capture_output=True,
                     text=True,
-                    check=True
+                    check=True,
+                    env=compilation_env
                 )
                 
                 with open(ptx_file, 'r') as f:
                     ptx_code = f.read()
-                
+
+                # Build cubin command with -ccbin if available
+                cubin_cmd = [self.nvcc_path, "-cubin"]
+                if ccbin_path:
+                    cubin_cmd.append(f"-ccbin={ccbin_path}")
+                cubin_cmd.extend(self.arch_flags)
+                cubin_cmd.extend(["-o", str(cubin_file), str(cuda_file)])
+
                 cubin_result = subprocess.run(
-                    [self.nvcc_path, "-cubin"] + self.arch_flags + ["-o", str(cubin_file), str(cuda_file)],
+                    cubin_cmd,
                     capture_output=True,
-                    text=True
+                    text=True,
+                    env=compilation_env
                 )
                 
                 cubin_data = None
