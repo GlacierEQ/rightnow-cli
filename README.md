@@ -1,4 +1,4 @@
-# RightNow CLI - GPU-Native AI Code Editor
+# RightNow CLI - AI agent that actually understands GPU architecture
 
 ```
     ██████╗ ██╗ ██████╗ ██╗  ██╗████████╗███╗   ██╗ ██████╗ ██╗    ██╗
