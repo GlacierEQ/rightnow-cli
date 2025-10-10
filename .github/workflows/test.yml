@@ -31,4 +31,4 @@ jobs:
     - name: Test installation
       run: |
         pip install -e .
-        rightnow --version
+        rightnow --help
