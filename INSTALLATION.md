@@ -61,9 +61,6 @@ For the latest development version:
 git clone https://github.com/RightNow-AI/rightnow-cli.git
 cd rightnow-cli
 
-# Install dependencies
-pip install -r requirements.txt
-
 # Install the package
 pip install -e .
 ```
@@ -83,7 +80,7 @@ source rightnow-env/bin/activate
 rightnow-env\Scripts\activate
 
 # Install RightNow CLI
-pip install rightnow-cli
+pip install -e .
 ```
 
 ### Method 4: Using Docker (Coming Soon)

@@ -26,6 +26,8 @@ classifiers = [
 ]
 keywords = ["gpu", "cuda", "optimization", "kernel", "ai", "performance", "rightnow", "code-editor", "nvidia", "assistant"]
 dependencies = [
+    "pydantic==2.12.0",
+    "backoff>=2.2.1",
     "requests>=2.31.0",
     "rich>=13.5.0",
     "prompt-toolkit>=3.0.0",

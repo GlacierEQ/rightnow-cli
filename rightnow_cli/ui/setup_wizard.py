@@ -267,13 +267,13 @@ def show_compiler_status(config_manager: ConfigManager):
     # Get configured paths
     compiler_paths = {}
     if config.cuda.compiler_paths:
-        if config.cuda.compiler_paths.nvcc:
+        if 'nvcc' in config.cuda.compiler_paths and config.cuda.compiler_paths['nvcc']:
             compiler_paths['nvcc'] = config.cuda.compiler_paths.nvcc
-        if config.cuda.compiler_paths.cl:
+        if 'cl' in config.cuda.compiler_paths and config.cuda.compiler_paths['cl']:
             compiler_paths['cl'] = config.cuda.compiler_paths.cl
-        if config.cuda.compiler_paths.ncu:
+        if 'ncu' in config.cuda.compiler_paths and config.cuda.compiler_paths['ncu']:
             compiler_paths['ncu'] = config.cuda.compiler_paths.ncu
-        if config.cuda.compiler_paths.nsys:
+        if 'nsys' in config.cuda.compiler_paths and config.cuda.compiler_paths['nsys']:
             compiler_paths['nsys'] = config.cuda.compiler_paths.nsys
 
     # Detect with configured paths
