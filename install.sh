@@ -21,7 +21,7 @@ VENV_DIR="$HOME/.rightnow-cli"
 print_banner() {
     echo ""
     echo -e "${CYAN}╔════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║        ${GREEN}RightNow CLI Installer${CYAN}                 ║${NC}"
+    echo -e "${CYAN}║        ${GREEN}RightNow CLI Installer${CYAN}   ║${NC}"
     echo -e "${CYAN}║        GPU-Native AI Code Editor               ║${NC}"
     echo -e "${CYAN}╚════════════════════════════════════════════════╝${NC}"
     echo ""
@@ -149,10 +149,6 @@ install_from_source() {
     print_info "Cloning repository..."
     if git clone https://github.com/$REPO.git; then
         cd rightnow-cli
-
-        # Install dependencies
-        print_info "Installing dependencies..."
-        $PYTHON_CMD -m pip install --user -r requirements.txt
 
         # Install package
         print_info "Installing package..."

@@ -13,7 +13,6 @@ Thank you for your interest in contributing to RightNow CLI! We welcome contribu
 
 3. Install development dependencies:
    ```bash
-   pip install -r requirements-dev.txt
    pip install -e .
    ```
 

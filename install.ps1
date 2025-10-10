@@ -179,10 +179,6 @@ function Install-FromSource {
 
         Set-Location "rightnow-cli"
 
-        # Install dependencies
-        Write-Info "Installing dependencies..."
-        & $PythonCmd -m pip install --user -r requirements.txt | Out-Null
-
         # Install package
         Write-Info "Installing package..."
         & $PythonCmd -m pip install --user -e . | Out-Null
