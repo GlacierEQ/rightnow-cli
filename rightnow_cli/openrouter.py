@@ -19,15 +19,33 @@ class KernelCandidate:
 
 class OpenRouterClient:
     BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
-    
-    def __init__(self, api_key: str):
-        self.api_key = api_key
+
+    # Default models - cheap and effective for testing
+    DEFAULT_MODEL = "deepseek/deepseek-chat"  # ~$0.14/$0.28 per 1M tokens
+    CHEAP_MODEL = "qwen/qwen-2.5-7b-instruct"  # ~$0.05/$0.10 per 1M tokens
+    FREE_MODEL = "deepseek/deepseek-chat:free"  # Free with data opt-in
+    PREMIUM_MODEL = "openai/gpt-4o"  # Best quality
+
+    def __init__(self, api_key: str, model: Optional[str] = None):
+        self._api_key = api_key
+        self.model = model or self.DEFAULT_MODEL
         self.headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
             "HTTP-Referer": "https://github.com/RightNow-AI/rightnow-cli",
             "X-Title": "RightNow CLI"
         }
+
+    @property
+    def api_key(self):
+        return self._api_key
+
+    @api_key.setter
+    def api_key(self, value):
+        """Update API key and headers when API key changes."""
+        self._api_key = value
+        # Update the Authorization header with the new API key
+        self.headers["Authorization"] = f"Bearer {value}"
     
     @backoff.on_exception(
         backoff.expo,
@@ -35,10 +53,15 @@ class OpenRouterClient:
         max_tries=3,
         max_time=60
     )
-    def _make_request(self, prompt: str, system_prompt: str, model: str = "openai/gpt-4") -> str:
+    def _make_request(self, prompt: str, system_prompt: str, model: Optional[str] = None) -> str:
         """Make a request to OpenRouter API with retry logic."""
+        # Validate API key before making request
+        if not self.api_key or self.api_key == "sk-temp-placeholder":
+            raise ValueError("Invalid API key. Please check your OpenRouter API key.")
+
+        model_to_use = model or self.model
         payload = {
-            "model": model,
+            "model": model_to_use,
             "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}

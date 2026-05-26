@@ -11,7 +11,7 @@ import pickle
 class CacheManager:
     def __init__(self, base_dir: Optional[Path] = None):
         if base_dir is None:
-            self.base_dir = Path.home() / ".ultrathink-cli"
+            self.base_dir = Path.home() / ".rightnow-cli"
         else:
             self.base_dir = Path(base_dir)
         
@@ -81,20 +81,37 @@ class CacheManager:
             json.dump(config, f, indent=2)
     
     def has_api_key(self) -> bool:
-        """Check if API key is configured."""
+        """Check if API key is configured and valid (not a placeholder)."""
         config = self.get_config()
-        return bool(config.get('openrouter_api_key'))
-    
+        api_key = config.get('openrouter_api_key')
+        # Check if API key exists and is not the placeholder value
+        return bool(api_key) and api_key != "sk-temp-placeholder"
+
     def get_api_key(self) -> Optional[str]:
-        """Get the stored API key."""
+        """Get the stored API key if it's valid (not a placeholder)."""
         config = self.get_config()
-        return config.get('openrouter_api_key')
+        api_key = config.get('openrouter_api_key')
+        # Return None if it's the placeholder value
+        if api_key == "sk-temp-placeholder":
+            return None
+        return api_key
     
     def save_api_key(self, api_key: str):
-        """Save API key to config."""
+        """Save API key to config (prevents saving placeholder keys)."""
+        # Don't save placeholder keys
+        if api_key == "sk-temp-placeholder":
+            return
         config = self.get_config()
         config['openrouter_api_key'] = api_key
         self.save_config(config)
+
+    def clear_placeholder_api_key(self):
+        """Remove placeholder API key from config if it exists."""
+        config = self.get_config()
+        api_key = config.get('openrouter_api_key')
+        if api_key == "sk-temp-placeholder":
+            del config['openrouter_api_key']
+            self.save_config(config)
     
     def _generate_kernel_id(self, model_name: str, operation: str, code: str) -> str:
         """Generate unique ID for a kernel."""

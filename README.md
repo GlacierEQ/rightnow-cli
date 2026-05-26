@@ -1,177 +1,239 @@
-# RightNow CLI
+# RightNow CLI - AI agent that actually understands GPU architecture
 
-[![Version](https://img.shields.io/badge/version-0.1.0--alpha-76B900?style=for-the-badge)](https://github.com/RightNow-AI/rightnow-cli/releases)
-[![Python](https://img.shields.io/badge/python-3.8+-76B900?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![CUDA](https://img.shields.io/badge/CUDA-11.0+-76B900?style=for-the-badge&logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Us-76B900?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/sSJqgNnq6X)
-[![License](https://img.shields.io/badge/License-Proprietary-76B900?style=for-the-badge)](LICENSE)
+```
+    ██████╗ ██╗ ██████╗ ██╗  ██╗████████╗███╗   ██╗ ██████╗ ██╗    ██╗
+    ██╔══██╗██║██╔════╝ ██║  ██║╚══██╔══╝████╗  ██║██╔═══██╗██║    ██║
+    ██████╔╝██║██║  ███╗███████║   ██║   ██╔██╗ ██║██║   ██║██║ █╗ ██║
+    ██╔══██╗██║██║   ██║██╔══██║   ██║   ██║╚██╗██║██║   ██║██║███╗██║
+    ██║  ██║██║╚██████╔╝██║  ██║   ██║   ██║ ╚████║╚██████╔╝╚███╔███╔╝
+    ╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝ ╚═════╝  ╚══╝╚══╝
 
-**AI-powered CUDA kernel optimizer that automatically improves GPU code performance by 20-30x using advanced machine learning models.**
+                    CUDA AI Assistant • Open Source
+```
 
-> Part of the [RightNow AI](https://rightnowai.co) ecosystem. Want 180x more powerful AI assistance for your entire codebase? Try [RightNow AI Code Editor](https://rightnowai.co).
+<p align="center">
+  <b><a href="https://rightnowai.co">rightnowai.co</a> • <a href="https://twitter.com/rightnowai_co">@rightnowai_co</a> • <a href="https://discord.com/invite/sSJqgNnq6X">Discord</a></b>
+</p>
 
-## Quick Start
+[![Version](https://img.shields.io/badge/version-1.0.0-76B900?style=for-the-badge)](https://github.com/RightNow-AI/rightnow-cli/releases)
+[![Python](https://img.shields.io/badge/python-3.9+-76B900?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License](https://img.shields.io/badge/License-Proprietary-orange?style=for-the-badge)](LICENSE)
 
+> **Open Source CLI Tool** - Want a full-featured CUDA development environment with code completion, integrated debugging, and advanced AI features?
+> Try **[RightNow Code Editor](https://www.rightnowai.co/)** - Our complete IDE for GPU development.
+
+**RightNow CLI** is an AI-powered CUDA development assistant that helps you write, optimize, and debug GPU code. Start FREE with no credit card required!
+
+<p align="center">
+  <img src="demo.png" alt="RightNow CLI Demo" width="800"/>
+</p>
+
+---
+
+## Quick Install (30 seconds)
+
+### Option 1: pip (Recommended)
 ```bash
-# Install
-git clone https://github.com/RightNow-AI/rightnow-cli.git
-cd rightnow-cli
-pip install -e .
-
-# Optimize your kernel
-rightnow optimize kernel.cu -o kernel_optimized.cu
+pip install rightnow-cli
 ```
 
-## Demo
+### Option 2: Quick Install Scripts
 
-<img src="demo.png" alt="RightNow CLI Demo" width="100%"/>
-
-## Features
-
-- **AI-Powered Optimization** - Uses GPT-4/Claude to analyze and optimize CUDA kernels
-- **Performance Gains** - Average 20-30x speedup on common kernel patterns
-- **Smart Analysis** - Automatically detects bottlenecks and optimization opportunities
-- **Safety First** - Validates correctness against original implementation
-- **Intelligent Caching** - Reuses optimizations for similar kernels
-- **Beautiful CLI** - Rich terminal interface with progress tracking
-
-## How It Works
-
-```mermaid
-graph LR
-    A[Input CUDA Kernel] --> B[Analyze Patterns]
-    B --> C[AI Optimization]
-    C --> D[Generate Variants]
-    D --> E[Compile & Test]
-    E --> F[Benchmark]
-    F --> G[Select Best]
-    G --> H[Output Optimized Kernel]
-    
-    style A fill:#e1f5fe
-    style H fill:#c8e6c9
-    style C fill:#fff3e0
-```
-
-1. **Analysis** - Parses your CUDA kernel to understand patterns and bottlenecks
-2. **AI Generation** - Creates multiple optimized variants using ML models
-3. **Compilation** - Tests each variant with nvcc for validity
-4. **Benchmarking** - Measures performance and selects the fastest
-5. **Verification** - Ensures numerical correctness vs original
-
-## Installation
-
-### Requirements
-
-- Python 3.8+
-- CUDA Toolkit 11.0+
-- NVIDIA GPU (Compute Capability 7.0+)
-- OpenRouter API key ([get one here](https://openrouter.ai))
-
-### Setup
-
+**Linux/macOS:**
 ```bash
-# Clone repository
-git clone https://github.com/RightNow-AI/rightnow-cli.git
-cd rightnow-cli
-
-# Install dependencies
-pip install -e .
-
-# Install dependencies dev
-pip install -e ".[dev]"
-
-# Verify installation
-rightnow --help
+curl -sSL https://raw.githubusercontent.com/RightNow-AI/rightnow-cli/main/install.sh | bash
 ```
 
-## Usage
+**Windows (PowerShell as Admin):**
+```powershell
+irm https://raw.githubusercontent.com/RightNow-AI/rightnow-cli/main/install.ps1 | iex
+```
+
+## Getting Started (2 minutes)
+
+### 1. Get your FREE API key (30 seconds)
+```bash
+# Visit OpenRouter (no credit card needed!)
+https://openrouter.ai
+
+# Sign up with Google/GitHub for instant access
+# Copy your API key from the dashboard
+```
+
+### 2. Start RightNow
+```bash
+rightnow
+# Paste your API key when prompted (one-time setup)
+```
+
+### 3. Start coding!
+```
+You: Create a vector addition CUDA kernel
+
+RightNow: [Creates optimized kernel with detailed explanations]
+```
+
+## What Can It Do?
+
+### For Beginners
+- **Learn CUDA**: "Explain how CUDA threads work"
+- **Write Code**: "Create a simple matrix multiplication kernel"
+- **Fix Errors**: "Help! My kernel crashes with error X"
+
+### For Experts
+- **Optimize**: "Optimize this kernel for memory coalescing"
+- **Debug**: "Find the race condition in my code"
+- **Analyze**: "Profile this kernel and suggest improvements"
+
+## Key Features
+
+### Start FREE
+- No credit card required
+- Free models included (Google Gemini, Meta Llama)
+- Upgrade to premium models when needed
+
+### Smart AI Agents
+- **General Assistant**: Helps with any CUDA task
+- **Optimizer**: Maximizes performance
+- **Debugger**: Finds and fixes bugs
+- **Analyzer**: Explains and improves code
+
+### Powerful Tools
+- Read and write CUDA files
+- Analyze performance bottlenecks
+- Generate optimized variants
+- Monitor GPU status
+- Execute bash commands
+
+## Example Usage
 
 ### Basic Commands
-
-#### Optimize a Kernel
 ```bash
-rightnow optimize kernel.cu [OPTIONS]
+# Start interactive mode
+rightnow
 
-Options:
-  -o, --output FILE        Output file for optimized kernel
-  -v, --variants INT       Number of variants to generate (default: 3)
-  -g, --gpu TEXT           Target GPU architecture (e.g., sm_86)
-  -f, --force              Force regeneration (ignore cache)
+# Inside RightNow:
+/models     # List available AI models
+/gpu        # Show GPU status
+/clear      # Clear conversation
+/help       # Show help
+/quit       # Exit
 ```
 
-#### Analyze Performance
-```bash
-rightnow analyze kernel.cu [OPTIONS]
+### Example Conversations
 
-Options:
-  -v, --verbose            Show detailed analysis
+**Creating a Kernel:**
+```
+You: Create a parallel reduction kernel
+
+RightNow: [Writes complete kernel with shared memory optimization]
 ```
 
-#### Configuration
-```bash
-rightnow config [OPTIONS]
+**Optimizing Code:**
+```
+You: Optimize my matrix multiplication for RTX 4090
 
-Options:
-  --show                  Show current configuration
-  --reset-api-key         Reset OpenRouter API key
-  --clear-cache           Clear optimization cache
+RightNow: [Analyzes and provides optimized version with 10x speedup]
 ```
 
-### Examples
+**Debugging:**
+```
+You: My kernel gives wrong results for large arrays
 
-```bash
-# Basic optimization
-rightnow optimize vector_add.cu
-
-# Save to specific file
-rightnow optimize matrix_mul.cu -o matrix_mul_fast.cu
-
-# Target specific GPU
-rightnow optimize kernel.cu --gpu sm_86 --variants 5
-
-# Analyze kernel patterns
-rightnow analyze reduction.cu --verbose
+RightNow: [Identifies overflow issue and provides fix]
 ```
 
-## Optimization Techniques
+## Available Models
 
-RightNow CLI applies state-of-the-art GPU optimization strategies:
+### Free Models (No cost!)
+- **Google Gemini 2.0 Flash** - Fast and capable (default)
+- **Meta Llama 3.2 3B** - Efficient for simple tasks
 
-| Category | Techniques |
-|----------|-----------|
-| **Memory** | Coalesced access, shared memory tiling, vectorized loads/stores |
-| **Compute** | Loop unrolling, instruction-level parallelism, warp primitives |
-| **Architecture** | Tensor cores, async copy, optimal occupancy tuning |
+### Premium Models (Pay-per-use via OpenRouter)
+- **GPT-4o** - Most capable overall
+- **Claude 3.5 Sonnet** - Best for complex code
+- **Gemini 1.5 Flash** - Fast with huge context
 
-## Performance Results
+Switch models anytime with `/models` command!
 
-Typical improvements on common kernel patterns:
+## System Requirements
 
-- **Matrix Operations**: 25x average (up to 35x)
-- **Reductions**: 20x average (up to 28x)
-- **Memory-bound**: 15x average (up to 22x)
+### Minimum
+- Python 3.9+
+- Any OS (Windows, Linux, macOS)
+- Internet connection
 
-*Results vary by GPU architecture and kernel complexity*
+### Recommended (for CUDA features)
+- NVIDIA GPU (GTX 1650 or newer)
+- CUDA Toolkit 11.0+
+- 8GB+ RAM
+
+## Troubleshooting
+
+### "Command not found"
+```bash
+# Add to PATH (Linux/macOS)
+export PATH="$HOME/.local/bin:$PATH"
+
+# Or reinstall
+pip uninstall rightnow-cli
+pip install rightnow-cli --user
+```
+
+### "API key error"
+```bash
+# Get your free key at:
+https://openrouter.ai
+
+# Clear old key and re-enter:
+rm -rf ~/.rightnow-cli
+rightnow  # Will prompt for new key
+```
+
+### GPU not detected
+```bash
+# Check NVIDIA driver
+nvidia-smi
+
+# Check CUDA
+nvcc --version
+
+# RightNow works without GPU (CPU simulation mode)
+```
+
+## Documentation
+
+- **Installation Guide**: [INSTALLATION.md](INSTALLATION.md)
+- **GitHub**: [github.com/RightNow-AI/rightnow-cli](https://github.com/RightNow-AI/rightnow-cli)
+- **Discord Community**: [discord.com/invite/sSJqgNnq6X](https://discord.com/invite/sSJqgNnq6X)
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-Proprietary license - free for personal/educational use. Commercial usage requires a license.
-Contact: jaber@rightnowai.co
+Proprietary Non-Commercial License - FREE for personal and educational use.
+See [LICENSE](LICENSE) for details.
 
-## Links
+For commercial use, contact: jaber@rightnowai.co
 
-- **Website**: [rightnowai.co](https://rightnowai.co)
-- **Documentation**: [docs.rightnowai.co](https://docs.rightnowai.co/)
+## Support
+
 - **Discord**: [Join our community](https://discord.com/invite/sSJqgNnq6X)
-- **Twitter/X**: [@rightnowai_co](https://twitter.com/rightnowai_co)
+- **Twitter**: [@rightnowai_co](https://twitter.com/rightnowai_co)
+- **Email**: jaber@rightnowai.co
+- **Issues**: [GitHub Issues](https://github.com/RightNow-AI/rightnow-cli/issues)
 
 ---
 
 <p align="center">
-Made with <3 by the RightNow AI Team<br>
-<strong>"Optimize at the speed of thought"</strong>
+  <b>Built with <3 by the RightNow AI Team</b><br>
+  <em>First <a href="https://www.rightnowai.co/">GPU Native AI Code Editor</a></em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20with-Python-76B900?style=flat-square&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Powered%20by-NVIDIA-76B900?style=flat-square&logo=nvidia&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Status-Active-76B900?style=flat-square"/>
 </p>
